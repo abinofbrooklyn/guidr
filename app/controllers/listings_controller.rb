@@ -10,7 +10,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = current_user.listing.new(listing_params)
+    @listing = current_user.listings.new(listing_params)
 
     if @listing.save
       redirect_to @listing
