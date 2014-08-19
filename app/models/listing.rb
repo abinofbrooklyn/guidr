@@ -7,10 +7,12 @@ class Listing < ActiveRecord::Base
   validates :title, presence: true
   validates :user, presence: true
 
-  SEARCH_RANGE = 0..99
-
   def self.search(search_params)
-    city(search_params[:city])
+    if search_params[:city].present?
+      city(search_params[:city])
+    else
+      all
+    end
   end
 
   def self.city(city)
