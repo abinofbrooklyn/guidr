@@ -20,12 +20,4 @@ class Listing < ActiveRecord::Base
       where("city ILIKE ?", "%#{f}%")
     end
   end
-
-  def self.query_if_present(term, &block)
-    if term.present?
-      block.call(term)
-    else
-      all
-    end
-  end
 end
