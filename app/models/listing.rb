@@ -14,10 +14,4 @@ class Listing < ActiveRecord::Base
       all
     end
   end
-
-  def self.city(city)
-    query_if_present(city) do |f|
-      where("city ILIKE ?", "%#{f}%")
-    end
-  end
 end
