@@ -14,4 +14,8 @@ class Listing < ActiveRecord::Base
       all
     end
   end
+
+  def self.city(city)
+    where("city ILIKE ?", "%#{city}%")
+  end
 end
