@@ -1,0 +1,13 @@
+<%= form_for [@listing, @reservation] do |form| %>
+  <div>
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date %>
+  </div>
+  <div>
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<p>Guide avaiable for <%= @listing.title %></p>
