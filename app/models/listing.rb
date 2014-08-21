@@ -42,17 +42,17 @@ class Listing < ActiveRecord::Base
   end
 
   def book_during(request_date)
-    available_date(request_date).destroy_all
+    booking_date(request_date).destroy_all
   end
 
   def create_reservation(user, request_date)
     reservations.create(
       user: user,
-      date: request_date.date
+      date: request_date
     )
   end
 
-  def available_date(request_date)
+  def booking_date(request_date)
     available_dates.where(date: request_date)
   end
 end
