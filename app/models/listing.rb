@@ -20,9 +20,9 @@ class Listing < ActiveRecord::Base
     where("city ILIKE ?", "%#{city}%")
   end
 
-  def reserve(user, date_range)
-    if available_during?(date_range)
-      book(user, date_range)
+  def reserve(user, request_date)
+    if available_on?(request_date)
+      book(user, request_date)
     else
       NullReservation.new
     end
@@ -30,20 +30,29 @@ class Listing < ActiveRecord::Base
 
   private
 
-  def available_during?(date_range)
-    count_dates_between(date_range) == count_available_dates_between(date_range)
+  def available_on?(request_date)
+    available_dates.where(date: request_date).exists?
   end
 
-  def count_dates_between(date_range)
-    date_range.days_in_range
+  def book(user, request_date)
+    transaction do
+      book_during(request_date)
+      create_reservation(user, request_date)
+    end
   end
 
-  def count_available_dates_between(date_range)
-    available_date_range(date_range).count
+  def book_during(request_date)
+    available_date(request_date).destroy_all
   end
 
-  def available_date_range(date_range)
-    the_range = date_range.start_date..date_range.end_date
-    available_dates.where(start_date: the_range, end_date: the_range)
+  def create_reservation(user, request_date)
+    reservations.create(
+      user: user,
+      date: request_date.date
+    )
+  end
+
+  def available_date(request_date)
+    available_dates.where(date: request_date)
   end
 end

@@ -10,9 +10,7 @@ class ReservationsController < ApplicationController
 
     if valid_dates?
       @reservation = @listing.reserve(
-        current_user,
-        DateRange.new(start_date: start_date, end_date: end_date)
-      )
+        current_user, date)
     end
 
     if @reservation && @reservation.valid?
@@ -31,18 +29,14 @@ class ReservationsController < ApplicationController
   end
 
   def valid_dates?
-    start_date.present? && end_date.present?
+    date.present? 
   end
 
-  def start_date
-    reservation_params[:start_date].to_date
-  end
-
-  def end_date
-    reservation_params[:end_date].to_date
+  def date
+    reservation_params[:date]
   end
 
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date)
+    params.require(:reservation).permit(:date)
   end
 end

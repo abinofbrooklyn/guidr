@@ -18,23 +18,12 @@ ActiveRecord::Schema.define(version: 20140820192925) do
 
   create_table "available_dates", force: true do |t|
     t.integer  "listing_id", null: false
-    t.date     "start_date", null: false
-    t.date     "end_date",   null: false
+    t.date     "date",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "available_dates", ["listing_id"], name: "index_available_dates_on_listing_id", using: :btree
-
-  create_table "date_ranges", force: true do |t|
-    t.integer  "listing_id", null: false
-    t.date     "start_date", null: false
-    t.date     "end_date",   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "date_ranges", ["listing_id"], name: "index_date_ranges_on_listing_id", using: :btree
 
   create_table "listings", force: true do |t|
     t.string   "city"
@@ -49,8 +38,7 @@ ActiveRecord::Schema.define(version: 20140820192925) do
   create_table "reservations", force: true do |t|
     t.integer  "listing_id", null: false
     t.integer  "user_id",    null: false
-    t.date     "start_date", null: false
-    t.date     "end_date",   null: false
+    t.date     "date",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
