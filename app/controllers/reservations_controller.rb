@@ -18,7 +18,7 @@ class ReservationsController < ApplicationController
     if @reservation && @reservation.valid?
       redirect_to @reservation
     else
-      flash.now[:alret] = "Reservation date is invalid"
+      flash.now[:alert] = "Reservation date is invalid"
       @reservation = Reservation.new
       render :new
     end
