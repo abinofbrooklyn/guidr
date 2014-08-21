@@ -11,14 +11,14 @@ class ReservationsController < ApplicationController
     if valid_dates?
       @reservation = @listing.reserve(
         current_user,
-        DateRange.new(start_date, end_date)
+        DateRange.new(start_date: start_date, end_date: end_date)
       )
     end
 
     if @reservation && @reservation.valid?
       redirect_to @reservation
     else
-      flash[:alret] = "Reservation date is invalid"
+      flash.now[:alret] = "Reservation date is invalid"
       @reservation = Reservation.new
       render :new
     end

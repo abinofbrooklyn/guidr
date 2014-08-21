@@ -1,6 +1,7 @@
 class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :reservations
+  has_many :available_dates
 
   validates :city, presence: true
   validates :address, presence: true
@@ -42,9 +43,7 @@ class Listing < ActiveRecord::Base
   end
 
   def available_date_range(date_range)
-    available_dates.where(
-      "date BETWEEN ? AND ?",
-      date_range.start_date,
-      date_range.end_date - 1)
+    the_range = date_range.start_date..date_range.end_date
+    available_dates.where(start_date: the_range, end_date: the_range)
   end
 end
