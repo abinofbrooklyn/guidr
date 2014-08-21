@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   end
 
   def reserved?(listing)
-    reserved_listings.include?(listing)
+    reserved_listing_ids.include?(listing.id)
   end
 
   def owns?(listing)
