@@ -2,6 +2,19 @@
 
 <p><%= @listing.description %></p>
 
+<p>
+  <%= @listing.address %><br>
+  <%= @listing.city %>
+</p>
+
 <% unless current_user.owns?(@listing) %>
   <%= link_to "Book this guide", new_listing_reservation_path(@listing) %>
 <% end %>
+
+<% if current_user.reserved?(@listing) %>
+  <p>Your Reservation</p>
+  <%= render current_user.reservations_for(@listing) %>
+<% end %>
+
+<p>Reviews:</p>
+<%= render @listing.reviews %>

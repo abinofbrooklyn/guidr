@@ -1,6 +1,7 @@
 <p><%= flash.alert %></p>
 
 <%= form_for [@listing, @reservation] do |form| %>
+  <%= render "application/object_errors", object: @reservation %>
   <div>
     <%= form.label :date %>
     <%= form.date_field :date %>
