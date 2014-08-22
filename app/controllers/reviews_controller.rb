@@ -6,8 +6,7 @@ class ReviewsController < ApplicationController
 
   def create
     @reservation = find_reservation
-    @review = Review.new(review_params)
-    @review.reservation = @reservation
+    @review = @reservation.build_review(review_params)
 
     if @review.save
       redirect_to @reservation.listing

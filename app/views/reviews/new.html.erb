@@ -1,4 +1,5 @@
 <%= form_for [@listing, @reservation, @review] do |form| %>
+  <%= render "application/object_errors", object: @review %>
   <div>
     <%= form.label :review %>
     <%= form.text_area :body %>

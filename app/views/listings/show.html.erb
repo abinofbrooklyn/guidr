@@ -12,7 +12,7 @@
 <% end %>
 
 <% if current_user.reserved?(@listing) %>
-  <p>YourReservation</p>
+  <p>Your Reservation</p>
   <%= render current_user.reservations_for(@listing) %>
 <% end %>
 
