@@ -11,7 +11,6 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to @reservation.listing
     else
-      flash[:alert] = "Invald Review"
       render :new
     end
   end
