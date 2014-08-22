@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   has_many :listings
   has_many :reservations
-
   has_many :reserved_listings, through: :reservations, source: :listing
 
   validates :email, presence: true, uniqueness: true

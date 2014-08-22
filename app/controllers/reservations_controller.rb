@@ -26,7 +26,7 @@ class ReservationsController < ApplicationController
     @reservation = find_reservation
 
     if current_user.id != @reservation.user_id
-      flash[:alert] = "Sorry, you an only view reservations made by you."
+      flash[:alert] = "Sorry, you can only view reservations made by you."
       redirect_to @reservation.listing
     end
   end
