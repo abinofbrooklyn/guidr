@@ -2,4 +2,8 @@
   <%= reservation.listing.title %>:
   <%= link_to reservation.date.to_formatted_s(:long_ordinal), reservation %>
   <%= link_to reservation.listing.title, reservation.listing %>
+
+  <% unless reservation.review %>
+    <%= link_to "Add Review", new_reservation_review_path(reservation) %>
+  <% end %>
 <% end %>
