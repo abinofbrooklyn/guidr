@@ -1,0 +1,5 @@
+<%= div_for(reservation) do %>
+  <%= reservation.listing.title %>:
+  <%= link_to reservation.date.to_formatted_s(:long_ordinal), reservation %>
+  <%= link_to reservation.listing.title, reservation.listing %>
+<% end %>

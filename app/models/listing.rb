@@ -43,13 +43,13 @@ class Listing < ActiveRecord::Base
 
   def book_on(request_date)
     available_dates.where(date: request_date).destroy_all
-    booking_on(request_date).destroy_all
   end
 
   def create_reservation(user, request_date)
-    reservations.create(
+    Reservation.create(
       user: user,
-      date: request_date
+      date: request_date,
+      listing: self
     )
   end
 end

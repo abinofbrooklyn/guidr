@@ -22,6 +22,19 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def show
+    @reservation = find_reservation
+
+    if current_user.id != @reservation.user_id
+      flash[:alert] = "Sorry, you an only view reservations made by you."
+      redirect_to @reservation.listing
+    end
+  end
+
+  def index
+    @reservations = current_user.reservations
+  end
+
   private
 
   def find_listing
@@ -38,5 +51,9 @@ class ReservationsController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(:date)
+  end
+
+  def find_reservation
+    Reservation.find(params[:id])
   end
 end

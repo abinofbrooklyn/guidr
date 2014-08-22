@@ -4,6 +4,5 @@ class Reservation < ActiveRecord::Base
 
   validates :listing, presence: true
   validates :user, presence: true
-  validates :start_date, date: {before: :end_date}
-  validates :end_date, date: {after: :start_date}
+  validates :date, presence: true
 end
