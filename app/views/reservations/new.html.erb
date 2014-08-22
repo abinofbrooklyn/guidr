@@ -1,0 +1,11 @@
+<p><%= flash.alert %></p>
+
+<%= form_for [@listing, @reservation] do |form| %>
+  <div>
+    <%= form.label :date %>
+    <%= form.date_field :date %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<p>Guide avaiable for <%= @listing.title %></p>

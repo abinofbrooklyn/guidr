@@ -1,6 +1,7 @@
 class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :reservations
+  has_many :available_dates
 
   validates :city, presence: true
   validates :address, presence: true
@@ -17,5 +18,38 @@ class Listing < ActiveRecord::Base
 
   def self.city(city)
     where("city ILIKE ?", "%#{city}%")
+  end
+
+  def reserve(user, request_date)
+    if available_on?(request_date)
+      book(user, request_date)
+    else
+      NullReservation.new
+    end
+  end
+
+  private
+
+  def available_on?(request_date)
+    available_dates.where(date: request_date).exists?
+  end
+
+  def book(user, request_date)
+    transaction do
+      book_on(request_date)
+      create_reservation(user, request_date)
+    end
+  end
+
+  def book_on(request_date)
+    available_dates.where(date: request_date).destroy_all
+  end
+
+  def create_reservation(user, request_date)
+    Reservation.create(
+      user: user,
+      date: request_date,
+      listing: self
+    )
   end
 end
