@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def create
     @user = sign_up(user_params)
+    @user = User.create(user_params)
 
     if @user.valid?
       sign_in(@user)
@@ -16,10 +17,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.avatar = nil
+    @user.save
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :avatar)
   end
 end
 
