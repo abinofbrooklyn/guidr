@@ -16,10 +16,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.avatar = nil
+    @user.save
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :avatar)
   end
 end
 
