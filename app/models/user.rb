@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
+  validates :avatar, presence: true
 
   def reservations_for(listing)
     reservations.where(listing: listing).includes(:listing)
