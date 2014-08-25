@@ -1,5 +1,4 @@
 class ReservationsController < ApplicationController
-  helper DateHelpers
 
   def new
     @listing = find_listing
