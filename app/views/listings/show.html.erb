@@ -1,5 +1,9 @@
 <h2><%= @listing.title %></h2>
 
+<% if current_user.owns?(@listing) %>
+  <%= link_to "Add Availability", new_listing_availability_path(@listing) %>
+<% end %>
+
 <p><%= @listing.description %></p>
 
 <p>
@@ -15,6 +19,9 @@
   <p>Your Reservation</p>
   <%= render current_user.reservations_for(@listing) %>
 <% end %>
+
+<p>Available Dates:</p>
+<%= render @listing.available_dates %>
 
 <p>Reviews:</p>
 <%= render @listing.reviews %>

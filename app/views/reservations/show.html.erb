@@ -4,7 +4,7 @@
 
 <p>
   <em>
-    <%= @reservation.date.to_formatted_s(:long_ordinal) %>
+    <%= format_date(@reservation.date) %>
   </em>
 </p>
 
