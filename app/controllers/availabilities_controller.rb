@@ -1,4 +1,5 @@
 class AvailabilitiesController < ApplicationController
+  
   def new
     @listing = find_listing
     @available_date = AvailableDate.new
