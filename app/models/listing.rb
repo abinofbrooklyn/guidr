@@ -21,6 +21,10 @@ class Listing < ActiveRecord::Base
     where("city ILIKE ?", "%#{city}%")
   end
 
+  def make_available_on(date)
+    available_dates.new(date).save
+  end
+
   def reserve(user, request_date)
     if available_on?(request_date)
       book(user, request_date)
