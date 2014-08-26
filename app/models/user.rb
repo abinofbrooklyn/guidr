@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     listing.user_id == id
   end
 
-  def can_change?(user)
+  def can_edit_profile?(user)
     admin? || profile?(user)
   end
 

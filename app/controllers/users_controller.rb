@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = find_user
-    @biography = User.find_by(params[:biography_id])
+    @biography = User.find_by(params[:user_id])
   end
 
   def edit

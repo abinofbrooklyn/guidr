@@ -4,6 +4,6 @@
   <%= @user.biography %>
 </div>
 
-<% if current_user.can_change?(@user) %>
+<% if current_user.can_edit_profile?(@user) %>
   <%= link_to "Edit Avatar", edit_user_path %>
 <% end %>
