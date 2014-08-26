@@ -1,3 +1,9 @@
-<%= image_tag @user.avatar.url %>
 <%= image_tag @user.avatar.url(:medium) %>
-<%= image_tag @user.avatar.url(:thumb) %>
+
+<div>
+  <%= @user.biography %>
+</div>
+
+<% if current_user.can_change?(@user) %>
+  <%= link_to "Edit Avatar", edit_user_path %>
+<% end %>

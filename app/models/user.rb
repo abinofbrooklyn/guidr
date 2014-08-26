@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
+  validates :biography, presence: true
   validates :avatar, presence: true
 
   def reservations_for(listing)
@@ -19,5 +20,9 @@ class User < ActiveRecord::Base
 
   def owns?(listing)
     listing.user_id == id
+  end
+
+  def can_change?(user)
+    admin? || user == self
   end
 end
