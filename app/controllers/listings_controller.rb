@@ -5,10 +5,6 @@ class ListingsController < ApplicationController
     @listing = Listing.new
   end
 
-  def show
-    @listing = Listing.find(params[:id])
-  end
-
   def create
     @listing = current_user.listings.new(listing_params)
 
@@ -16,6 +12,31 @@ class ListingsController < ApplicationController
       redirect_to @listing
     else
       render :new
+    end
+  end
+
+  def show
+    @listing = Listing.find(params[:id])
+    @geojson = []
+
+     @geojson << {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [@listing.longitude, @listing.latitude]
+        },
+        properties: {
+          name: @listing.title,
+          address: @listing.address,
+            :"maker-color" => "#00607d",
+            :"marker-symbol" => "circle",
+            :"marker-size" => "medium"
+        }
+      }
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }
     end
   end
 
@@ -28,7 +49,9 @@ class ListingsController < ApplicationController
         :city,
         :address,
         :title,
-        :description
+        :description,
+        :longitude,
+        :latitude
       )
   end
 end

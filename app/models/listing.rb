@@ -1,4 +1,6 @@
 class Listing < ActiveRecord::Base
+  geocoded_by :address
+  after_validation :geocode
   belongs_to :user
   has_many :reservations
   has_many :available_dates
