@@ -19,11 +19,11 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     @geojson = []
 
-      @geojson << {
+     @geojson << {
         type: "Feature",
         geometry: {
           type: "Point",
-          coordinates:[@listing.longitude, @listing.latitude]
+          coordinates: [@listing.longitude, @listing.latitude]
         },
         properties: {
           name: @listing.title,
