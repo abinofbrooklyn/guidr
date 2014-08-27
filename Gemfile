@@ -8,6 +8,7 @@ gem 'pg'
 gem 'monban', '~>0.1.1'
 gem 'paperclip', '~> 4.1'
 # Use SCSS for stylesheets
+gem 'geocoder'
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
