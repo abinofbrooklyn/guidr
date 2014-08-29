@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   resources :listings, only: [:new, :create, :show] do
     resources :availabilities, only: [:new, :create]
     resources :reservations, only: [:new, :create]
+    resources :conversations, only: [:new, :create]
+  end
+
+  resources :conversations, only: [:show, :index] do
+    resources :messages, only: [:create]
   end
 
   resources :reservations, only: [:show, :index] do

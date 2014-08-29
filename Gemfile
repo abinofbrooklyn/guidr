@@ -10,6 +10,7 @@ gem 'paperclip', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'geocoder'
 gem 'sass-rails', '~> 4.0.3'
+gem 'pusher'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -31,6 +32,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :development do
   gem 'spring'
   gem 'monban-generators'
+  gem 'dotenv-rails'
 end
 
 # Use ActiveModel has_secure_password
