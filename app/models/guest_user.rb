@@ -1,9 +1,9 @@
 class GuestUser
-  def owns?(_listing)
+  def owns?(listing)
     false
   end
 
-  def reserved?(_listing)
+  def reserved?(listing)
     false
   end
 end

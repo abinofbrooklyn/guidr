@@ -9,20 +9,12 @@
 </div>
 
 <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
-<script type="text/javascript">
 
-    var pusher = new Pusher('<%= ENV["Pusher.key"] %>');
-    var channel = pusher.subscribe('guidr_channel_<%= @conversation.id %>');
-    channel.bind('new_message', appendMessage);
-
-    function appendMessage(date) {
-      var messages = $("#messages");
-
-      var insert_div= '<div class="message" id="message_' + data.id + ' "><span class="user">' + data.user + ': </span><span class="body">' + data.body + '</span> <span class="time">(' + data.time + ')</span></div>';
-
-      messages.append(insert_div);
-
-      $('html, body').animate({scrollTop:$(document).height()}, 'slow');
-    }
+<script>
+  var pusher = new Pusher(4e85a1ddd1b775bdb49b);
+  var channel = pusher.subscribe('guidr_channel');
+  channel.bind('message', function(data) {
+      alert(data.message);
+      });
 </script>
 
