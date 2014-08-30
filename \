@@ -1,6 +1,5 @@
 $ ->
-  data = '[{"type":"Feature","geometry":{"type":"Point","coordinates":[-77.03238901390978,38.913188059745586]},"properties":{"title":"Mapbox DC","address":"1714 14th St NW, Washington DC","marker-color":"#fc4353","marker-size":"large","marker-symbol":"monument"}}]'
-  geojson = $.parseJSON(data)
+  geojson = $.parseJSON("")
   $.ajax
     dataType: 'text'
     url: location.pathname + '.json'
