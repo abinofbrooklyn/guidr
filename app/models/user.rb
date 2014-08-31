@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :conversation_memberships
+  has_many :conversations, through: :conversation_memberships
   has_many :listings
   has_many :reservations
   has_many :reserved_listings, through: :reservations, source: :listing
