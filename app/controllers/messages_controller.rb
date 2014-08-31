@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
 
     current_user.messages << @message
 
-    MessageSend.new(@message).send
+    GuidrMessage.new(@message).send
   end
 
   private
