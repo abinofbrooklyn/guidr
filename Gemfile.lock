@@ -51,6 +51,7 @@ GEM
     erubis (2.7.0)
     execjs (2.2.1)
     geocoder (1.2.4)
+    gmaps4rails (2.1.2)
     hike (1.2.3)
     httpclient (2.4.0)
     i18n (0.6.11)
@@ -149,6 +150,7 @@ DEPENDENCIES
   date_validator
   dotenv-rails
   geocoder
+  gmaps4rails
   jbuilder (~> 2.0)
   jquery-rails
   monban (~> 0.1.1)

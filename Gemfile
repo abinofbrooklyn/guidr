@@ -9,6 +9,7 @@ gem 'monban', '~>0.1.1'
 gem 'paperclip', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'geocoder'
+gem 'gmaps4rails'
 gem 'sass-rails', '~> 4.0.3'
 gem 'pusher'
 # Use Uglifier as compressor for JavaScript assets

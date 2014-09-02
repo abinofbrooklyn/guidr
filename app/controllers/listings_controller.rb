@@ -17,26 +17,9 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
-    @geojson = []
-
-     @geojson << {
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [@listing.longitude, @listing.latitude]
-        },
-        properties: {
-          name: @listing.title,
-          address: @listing.address,
-            :"maker-color" => "#00607d",
-            :"marker-symbol" => "circle",
-            :"marker-size" => "medium"
-        }
-      }
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @geojson }
+    @hash = Gmaps4rails.build_markers(@listing) do |listing, marker|
+      marker.lat listing.latitude
+      marker.lng listing.longitude
     end
   end
 
