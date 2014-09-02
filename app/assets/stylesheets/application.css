@@ -14,7 +14,7 @@
  *= require_self
  */
 
-#map {
-  width: 800px;
-  height: 600px;
-}
+#map { width: 800px; 
+       height: 400px;'
+     }
+

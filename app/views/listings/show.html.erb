@@ -12,8 +12,8 @@
 <p><%= @listing.description %></p>
 
 <p>
-<%= @listing.address %><br>
-<%= @listing.city %>
+  <%= @listing.address %><br>
+  <%= @listing.city %>
 </p>
 
 <% unless current_user.owns?(@listing) %>
@@ -22,7 +22,7 @@
 
 <% if current_user.reserved?(@listing) %>
   <p>Your Reservation</p>
-<%= render current_user.reservations_for(@listing) %>
+  <%= render current_user.reservations_for(@listing) %>
 <% end %>
 
 <p>Available Dates:</p>
@@ -31,9 +31,7 @@
 <p>Reviews:</p>
 <%= render @listing.reviews %>
 
-<div style='width: 800px;'>
-    <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
+<div id="map"></div>
 
 <script type="text/javascript">
 handler = Gmaps.build('Google');
