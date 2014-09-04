@@ -11,22 +11,28 @@ Rails.application.routes.draw do
   end
 
   resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :show, :edit, :update]
+  resources :users, only: [:new, :create] do
+    resources :conversations, only: [:new, :create]
+  end
 
   get "search" => "search_results#show"
 
    resources :listings, only: [:new, :create, :show] do
      resources :availabilities, only: [:new, :create]
      resources :reservations, only: [:new, :create]
-     resources :conversations, only: [:new, :create]
+     resources :user, only: [:show, :edit, :update]
    end
-  
-  namespace :admin do
-    resources :listings, only: [:destroy]
+
+  resources  :conversations, only: [:index, :show] do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+    end
   end
 
-  resources :conversations, only: [:show, :index] do
-    resources :messages, only: [:create]
+  namespace :admin do
+    resources :listings, only: [:destroy]
   end
 
   resources :reservations, only: [:show, :index] do

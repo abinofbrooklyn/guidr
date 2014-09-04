@@ -1,8 +1,2 @@
-<%= form_for [@listing, @conversation] do |form| %>
-    <%= render "application/object_errors", object: @conversation %>
-  <div>
-    <%= form.label :message %>
-    <%= form.text_field :title %>
-  </div>
-  <%= form.submit %>
-<% end %>
+<h1>Talk to your Guide<h1>
+<%= render "form" %>

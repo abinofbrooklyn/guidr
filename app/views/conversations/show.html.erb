@@ -1,25 +1,18 @@
-<div id="messages">
-  <%= render @conversation %>
-</div>
-
-<div id="conversation_footer">
-  <%= form_for([@conversation, @message], remote: true) do |form| %>
-    <%= form.text_area :body, placeholder: "Type here..." %>
-  <% end %>
-</div>
-<div>Connections state: <span id="connection_state"></span></div>
-<script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
-
-<script>
-  Pusher.log = function(message) {
-    if (window.console && window.console.log) {
-      window.console.log( message );
-    };
-
-  var pusher = new Pusher('4e85a1ddd1b775bdb49b');
-  var channel = pusher.subscribe('test_channel');
-  channel.bind('my_event', function(data) {
-      alert(data.message);
-      });
-</script>
-
+<h1>
+  <%= conversation.subject %>
+  <ul>
+    <%= content_tag_for(:li, conversation.receipts_for(current_user)) do |receipt| %>
+      <% message = receipt.message %>
+      <h3>
+        <%= message.sender.email %>
+      </h3>
+      <h3>
+        <%= message.subject %>
+      </h3>
+      <p>
+        <%= message.body %>
+      </p>
+    <% end %>
+  </ul>
+  <%= render "messages", conversation: conversation %>
+</h1>

@@ -1,0 +1,17 @@
+<%= form_for :conversation, url: :conversations do |f| %>
+  <div>
+    <%= f.label :recipients %>
+    <%= f.text_field :recipients %>
+  </div>
+  <div>
+    <%= f.label :subject %>
+    <%= f.text_field :subject %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body, as: :text %>
+  </div>
+  <div class="form-actions">
+    <%= f.submit %>
+  </div>
+<% end %>

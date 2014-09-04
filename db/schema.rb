@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828194058) do
+ActiveRecord::Schema.define(version: 20140902203239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,20 +24,6 @@ ActiveRecord::Schema.define(version: 20140828194058) do
   end
 
   add_index "available_dates", ["listing_id"], name: "index_available_dates_on_listing_id", using: :btree
-
-  create_table "conversation_memberships", force: true do |t|
-    t.integer "user_id"
-    t.integer "conversation_id"
-  end
-
-  add_index "conversation_memberships", ["conversation_id"], name: "index_conversation_memberships_on_conversation_id", using: :btree
-  add_index "conversation_memberships", ["user_id"], name: "index_conversation_memberships_on_user_id", using: :btree
-
-  create_table "conversations", force: true do |t|
-    t.string   "title",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "listings", force: true do |t|
     t.string   "city"
@@ -56,6 +42,9 @@ ActiveRecord::Schema.define(version: 20140828194058) do
     t.string  "unsubscriber_type"
     t.integer "conversation_id"
   end
+
+  add_index "mailboxer_conversation_opt_outs", ["conversation_id"], name: "index_mailboxer_conversation_opt_outs_on_conversation_id", using: :btree
+  add_index "mailboxer_conversation_opt_outs", ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type", using: :btree
 
   create_table "mailboxer_conversations", force: true do |t|
     t.string   "subject",    default: ""
@@ -82,6 +71,9 @@ ActiveRecord::Schema.define(version: 20140828194058) do
   end
 
   add_index "mailboxer_notifications", ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id", using: :btree
+  add_index "mailboxer_notifications", ["notified_object_id", "notified_object_type"], name: "index_mailboxer_notifications_on_notified_object_id_and_type", using: :btree
+  add_index "mailboxer_notifications", ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type", using: :btree
+  add_index "mailboxer_notifications", ["type"], name: "index_mailboxer_notifications_on_type", using: :btree
 
   create_table "mailboxer_receipts", force: true do |t|
     t.integer  "receiver_id"
@@ -96,17 +88,7 @@ ActiveRecord::Schema.define(version: 20140828194058) do
   end
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
-
-  create_table "messages", force: true do |t|
-    t.string   "body"
-    t.integer  "user_id"
-    t.integer  "chat_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "messages", ["chat_id"], name: "index_messages_on_chat_id", using: :btree
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+  add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
 
   create_table "reservations", force: true do |t|
     t.integer  "listing_id", null: false
@@ -142,5 +124,11 @@ ActiveRecord::Schema.define(version: 20140828194058) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+
+  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", name: "mb_opt_outs_on_conversations_id", column: "conversation_id"
+
+  add_foreign_key "mailboxer_notifications", "mailboxer_conversations", name: "notifications_on_conversation_id", column: "conversation_id"
+
+  add_foreign_key "mailboxer_receipts", "mailboxer_notifications", name: "receipts_on_notification_id", column: "notification_id"
 
 end
