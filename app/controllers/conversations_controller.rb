@@ -29,10 +29,6 @@ class ConversationsController < ApplicationController
     redirect_to :conversations
   end
 
-  def index
-    @conversations = Conversation.all
-  end
-
   private
 
   def mailbox

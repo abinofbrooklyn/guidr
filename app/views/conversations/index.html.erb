@@ -1,10 +1,16 @@
 <h1>Your Conversations</h1>
 <h2>Inbox<h2>
 <ul>
-  <%= render collection: mailbox.inbox, partial: "conversation" %>
+  <%= render partial: "conversation", collection: @conversation %>
 </ul>
 <h2>Sentbox</h2>
 <ul>
-  <%= render collection: mailbox.sentbox, partial: "conversations" %>
+  <%= render collection: mailbox.sentbox, partial: "conversation" %>
 </ul>
-<%= link_to "Back to Listings", listing_path %>
+<h2>Trash<h2>
+<ul>
+  <%= render collection: mailbox.trash, partial: "conversation" %>
+</ul>
+<h4>
+  <%= link_to "Back to Listings", @listing %>
+</h4>
