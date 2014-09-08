@@ -14,7 +14,23 @@
  *= require_self
  */
 
-#map { width: 800px; 
-       height: 400px;'
-     }
+.main-nav {
+     height: 50px;
+     background-color: #F14C38;
+}
 
+body {
+     background-color: #F4F1E0;
+}
+
+.listing-content {
+  padding: 40px;
+}
+
+#map { 
+       position:absolute;
+       top:1;
+       width: 600px; 
+       height: 400px;
+       margin-left: 35em;
+}
