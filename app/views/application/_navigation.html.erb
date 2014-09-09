@@ -1,0 +1,20 @@
+<header class="navigation">
+  <div class="menu-wrapper">
+    <p class="navigation-menu-button" id="js-mobile-menu">MENU</p>
+    <div class="nav">
+      <ul id="navigation-menu">
+        <li class="nav-link logo">
+          <%= link_to "Guidr", root_path %>
+        </li>
+      </ul>
+    </div>
+    <div class="navigation-tools">
+      <div class="search-bar">
+        <div class="search-and-submit">
+          <%= render "search_form" %>
+        </div>
+      </div>
+      <%= render "sign_in_out_sign_up", login: "navigation-button" %>
+    </div>
+  </div>
+</header>
