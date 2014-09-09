@@ -3,13 +3,13 @@ class ConversationsController < ApplicationController
   helper_method :mailbox, :conversation
 
   def new
-    @user = User.find(params[:user_id])
   end
-  
+
   def create
-    recipient = User.find_by(email: params[:user_id])
+    recipient_emails = conversation_params(:recipients).split(',')
+    recipients = User.where(email: recipient_emails).all
     conversation = current_user.
-      send_message(recipient, *conversation_params(:body, :subject)).conversation
+      send_message(recipients, *conversation_params(:body, :subject)).conversation
 
     redirect_to conversation_path(conversation)
   end

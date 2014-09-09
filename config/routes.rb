@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create] do
-    resources :conversations, only: [:new, :create]
   end
 
   get "search" => "search_results#show"
@@ -21,9 +20,10 @@ Rails.application.routes.draw do
      resources :availabilities, only: [:new, :create]
      resources :reservations, only: [:new, :create]
      resources :user, only: [:show, :edit, :update]
+     resources :conversations, only: [:new]
    end
 
-  resources  :conversations, only: [:index, :show] do
+  resources  :conversations, only: [:index, :show, :create] do
     member do
       post :reply
       post :trash

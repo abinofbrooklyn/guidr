@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  acts_as_messageable
   has_many :listings
   has_many :reservations
   has_many :reserved_listings, through: :reservations, source: :listing
@@ -10,6 +9,7 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
   validates :biography, presence: true
   validates :avatar, presence: true
+  acts_as_messageable
 
   def reservations_for(listing)
     reservations.where(listing: listing).includes(:listing)
