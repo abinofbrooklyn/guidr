@@ -9,14 +9,17 @@
   <% if current_user.owns?(@listing) %>
     <%= button_to "Add Availability", new_listing_availability_path(@listing), method: :get %>
   <% end %>
-<% if notice %>
-  <p class="notice"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert"><%= alert %></p>
-<% end %>
-
-  <%= link_to "Send a Message", new_listing_conversation_path(@listing) %>
+  
+  <% if notice %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+  <% if signed_in? %>
+    <%= link_to "My Conversations", :conversations %>
+    <%= link_to "Send a Message", new_listing_conversation_path(@listing) %>
+  <% end %>
 
 <div class="listing-description">
   <p><b>Description</b></p>

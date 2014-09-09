@@ -21,7 +21,6 @@ class ListingsController < ApplicationController
       marker.lat listing.latitude
       marker.lng listing.longitude
     end
-    @user = User.find(params[:id])
   end
 
   def destroy
