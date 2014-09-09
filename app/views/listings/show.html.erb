@@ -7,18 +7,19 @@
 
   <div id="map"></div>
   <% if current_user.owns?(@listing) %>
-    <%= link_to "Add Availability", new_listing_availability_path(@listing) %>
+    <%= button_to "Add Availability", new_listing_availability_path(@listing), method: :get %>
   <% end %>
 
   <%= link_to "Send a Message", new_listing_conversation_path(@listing) %>
 
 <div class="listing-description">
-  <p>Description</p>
+  <p><b>Description</b></p>
   <p>
     <%= @listing.description %>
   </p>
 </div>
 
+  <p><b>Location</b></p>
   <p>
     <%= @listing.address %>
   </p>
@@ -32,11 +33,11 @@
     <%= render current_user.reservations_for(@listing) %>
   <% end %>
 
-  <p>Available Dates</p>
+  <p><b>Available Dates</b></p>
   <%= render @listing.available_dates %>
 
 <div class="listing-review">
-  <p>Reviews</p>
+  <p><b>Reviews</b></p>
   <%= render @listing.reviews %>
 </div>
 
