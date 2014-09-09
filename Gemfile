@@ -14,11 +14,14 @@ gem 'sass', '~> 3.3.14'
 gem 'bourbon', '~> 4.0.1'
 gem 'bitters', '~> 0.10.0'
 gem 'neat', '~> 1.7.0.pre'
+gem 'mailboxer'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 gem 'date_validator'
+gem 'haml-rails'
+gem 'simple_form'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 

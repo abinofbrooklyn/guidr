@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :conversation_memberships
-  has_many :conversations, through: :conversation_memberships
   has_many :listings
   has_many :reservations
   has_many :reserved_listings, through: :reservations, source: :listing
@@ -11,6 +9,7 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
   validates :biography, presence: true
   validates :avatar, presence: true
+  acts_as_messageable
 
   def reservations_for(listing)
     reservations.where(listing: listing).includes(:listing)
@@ -26,5 +25,13 @@ class User < ActiveRecord::Base
 
   def can_change?(user)
     admin? || user == self
+  end
+
+  def name
+    email
+  end
+
+  def mailboxer_email(object)
+    email
   end
 end
