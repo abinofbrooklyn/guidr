@@ -10,8 +10,10 @@ gem 'paperclip', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'sass-rails', '~> 4.0.3'
-gem 'pusher'
+gem 'sass', '~> 3.3.14'
+gem 'bourbon', '~> 4.0.1'
+gem 'bitters', '~> 0.10.0'
+gem 'neat', '~> 1.7.0.pre'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
